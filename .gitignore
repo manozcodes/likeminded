@@ -1,0 +1,5 @@
+venv
+.vscode
+*.pyc
+migrations/__pycache__/
+__pycache__
