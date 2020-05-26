@@ -16,8 +16,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserLoginSerializer(serializers.Serializer):
-    # email = serializers.EmailField()
-    # username = serializers.SlugField()
     email_or_username = serializers.CharField()
     password = serializers.CharField()
 
@@ -32,7 +30,6 @@ class UserLoginSerializer(serializers.Serializer):
                 username=data['email_or_username'],
                 password=data['password']
             )
-        # user = authenticate(**data)
         if user and user.is_active:
             return user
         raise serializers.ValidationError(

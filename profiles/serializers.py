@@ -77,13 +77,19 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         read_only_fields = ('username',)
         lookup_field = 'username'
 
+    # Python setattr() function is used to set a value to the object's attribute.
+    # It takes three arguments an object, a string, and an arbitrary value, and returns none.
+    # It is helpful when we want to add a new attribute to an object and set a value to it.
     def update(self, instance, validated_data):
+
+        # Update user profile fields
         profile_data = validated_data.pop('profile', None)
         profile = instance.profile
         for field, value in profile_data.items():
             if value:
                 setattr(profile, field, value)
 
+        # Update user fields
         for field, value in validated_data.items():
             if value:
                 setattr(instance, field, value)

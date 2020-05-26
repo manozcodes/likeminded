@@ -4,17 +4,13 @@ from .serializers import (
     UserDetailSerializer,
     UserUpdateSerializer,
 )
-from django.contrib.auth import get_user_model, update_session_auth_hash
 from rest_framework import generics, views
-from rest_framework.response import Response
-from knox.models import AuthToken
 from rest_framework.permissions import (
     AllowAny,
     IsAuthenticated,
     IsAuthenticatedOrReadOnly,
 )
 from authentication.permissions import IsOwnerOrAdminOrReadOnly
-from rest_framework.status import HTTP_400_BAD_REQUEST
 
 User = get_user_model()
 
