@@ -11,6 +11,7 @@ from rest_framework.permissions import (
     IsAuthenticatedOrReadOnly,
 )
 from authentication.permissions import IsOwnerOrAdminOrReadOnly
+from django.contrib.auth import get_user_model
 
 User = get_user_model()
 

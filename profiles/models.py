@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.conf import settings
 
 User = get_user_model()
 
@@ -13,6 +12,8 @@ class UserProfile(models.Model):
     address = models.CharField(max_length=255, blank=True)
     profile_image = models.URLField(default='', blank=True)
     bio = models.TextField(max_length=2000, blank=True)
+    followers = models.IntegerField(default=0)
+    following = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.username

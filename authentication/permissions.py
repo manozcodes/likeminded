@@ -14,4 +14,4 @@ class IsOwnerOrAdminOrReadOnly(permissions.BasePermission):
         if request.user and request.user.is_staff:
             return True
 
-        return obj == request.user
+        return obj == request.user.id
