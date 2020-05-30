@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from .models import UserProfile
+from .models import UserProfile, UserFollowing
 
 User = get_user_model()
 
@@ -10,6 +10,18 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'email', 'username', 'is_active')
+
+
+class FollowingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserFollowing
+        fields = ("id", "following_user_id", "created")
+
+
+class FollowersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserFollowing
+        fields = ("id", "follower_user_id", "created")
 
 
 class UserListSerializer(serializers.ModelSerializer):
@@ -22,8 +34,9 @@ class UserListSerializer(serializers.ModelSerializer):
             'bio',
             'profile_image',
             'is_verified',
-            'is_admin',
             'address',
+            'following',
+            'followers',
             'created_at'
         ]
 
@@ -32,6 +45,15 @@ class UserListSerializer(serializers.ModelSerializer):
     is_verified = serializers.URLField(source='profile.is_verified')
     full_name = serializers.CharField(source='profile.full_name')
     address = serializers.CharField(source='profile.address')
+
+    following = serializers.SerializerMethodField()
+    followers = serializers.SerializerMethodField()
+
+    def get_following(self, obj):
+        return FollowingSerializer(obj.following.all(), many=True).data
+
+    def get_followers(self, obj):
+        return FollowersSerializer(obj.followers.all(), many=True).data
 
 
 class UserDetailSerializer(serializers.ModelSerializer):
@@ -96,4 +118,26 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
         profile.save()
         instance.save()
+        return instance
+
+
+class UserFollowingSerializer(serializers.ModelSerializer):
+    # adding request.user automatically
+    follower_user_id = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(), default=serializers.CurrentUserDefault()
+    )
+
+    class Meta:
+        model = UserFollowing
+        fields = "__all__"
+
+    def create(self, validated_data):
+        follower_user_id = validated_data.pop("follower_user_id")
+        following_user_id = validated_data.get("following_user_id")
+
+        if follower_user_id == following_user_id:
+            raise serializers.ValidationError("You can't follow yourself.")
+        else:
+            instance = UserFollowing.objects.create(
+                follower_user_id=follower_user_id, **validated_data)
         return instance

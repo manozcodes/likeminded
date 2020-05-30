@@ -3,8 +3,9 @@ from .serializers import (
     UserListSerializer,
     UserDetailSerializer,
     UserUpdateSerializer,
+    UserFollowingSerializer
 )
-from rest_framework import generics, views
+from rest_framework import generics, views, mixins, viewsets
 from rest_framework.permissions import (
     AllowAny,
     IsAuthenticated,
@@ -12,6 +13,7 @@ from rest_framework.permissions import (
 )
 from authentication.permissions import IsOwnerOrAdminOrReadOnly
 from django.contrib.auth import get_user_model
+from .models import UserFollowing
 
 User = get_user_model()
 
@@ -34,3 +36,11 @@ class UserUpdateAPIView(generics.UpdateAPIView):
     permission_classes = [IsOwnerOrAdminOrReadOnly]
     queryset = User.objects.all()
     lookup_field = 'username'
+
+
+class UserFollowingViewSet(
+    mixins.CreateModelMixin, mixins.DestroyModelMixin, viewsets.GenericViewSet
+):
+    permission_classes = (AllowAny,)
+    serializer_class = UserFollowingSerializer
+    queryset = UserFollowing.objects.all()

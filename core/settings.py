@@ -124,7 +124,6 @@ MEDIA_URL = '/media/'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
-
 }
 
 AUTH_USER_MODEL = 'authentication.User'
