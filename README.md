@@ -1,7 +1,3 @@
-# likeminded
-
-_This is the project build for the purpose of learning. The motivation behind doing this project is to grow myself as a programmer and the final product that comes when i do complete this project, solves the real-life problems of thousands of people._
-
 **About "likeminded"**
 
 **likeminded** is the platform where people come to share similar interests and goals and meet like-minded peoples. It is a social circle that enables user to find mentors, friends, employees, or even a business partner. It will be avaliable in both Web and Mobile(Adroid/iOS)
