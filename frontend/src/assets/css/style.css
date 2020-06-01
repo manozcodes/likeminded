@@ -105,8 +105,8 @@ section {
 }
 
 /* ==============================================
-   2. Navbar 
-===============================================*/
+     2. Navbar 
+  ===============================================*/
 
 .custom-navbar {
   background-color: #ffffff !important;
@@ -149,8 +149,8 @@ section {
 }
 
 /* ==============================================
-   3. Buttons
-===============================================*/
+     3. Buttons
+  ===============================================*/
 
 .btn {
   font-size: 14px;
@@ -222,8 +222,8 @@ section {
 }
 
 /* ==============================================
-   4. Hero
-===============================================*/
+     4. Hero
+  ===============================================*/
 
 #hero {
   background-color: #f6f8f9;
@@ -250,8 +250,8 @@ section {
 }
 
 /* ==============================================
-   5. Marketing
-===============================================*/
+     5. Marketing
+  ===============================================*/
 
 #marketing p {
   font-size: 20px;
@@ -269,12 +269,12 @@ section {
 }
 
 /* .content-box {
-  padding: 60px 20px;
-} */
+    padding: 60px 20px;
+  } */
 
 /* ==============================================
-   6. Testimonials
-===============================================*/
+     6. Testimonials
+  ===============================================*/
 
 #testimonials {
   background-color: #f6f8f9;
@@ -347,8 +347,8 @@ section {
 }
 
 /* ==============================================
-   7. Pricing
-===============================================*/
+     7. Pricing
+  ===============================================*/
 
 .pricing-box {
   background-color: #ffffff;
@@ -412,8 +412,8 @@ section {
 }
 
 /* ==============================================
-   8. Call to Action
-===============================================*/
+     8. Call to Action
+  ===============================================*/
 
 #call-to-action {
   /* background-image: url("images/call-to-action.png"); */
@@ -449,8 +449,8 @@ section {
 }
 
 /* ==============================================
-   9. Footer
-===============================================*/
+     9. Footer
+  ===============================================*/
 
 footer {
   background-color: #292c31;
@@ -510,8 +510,8 @@ footer small {
 }
 
 /* ==============================================
-   9. Media Queries
-===============================================*/
+     9. Media Queries
+  ===============================================*/
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
@@ -678,14 +678,6 @@ footer small {
   }
 }
 
-.test {
-  border-bottom: 1px solid grey;
-}
-
-.test-logo {
-  float: left;
-}
-
 .dont-have {
   padding-left: 3px;
 }
@@ -693,4 +685,32 @@ footer small {
 .nav-link {
   display: block;
   padding: 0;
+}
+
+.ant-btn-primary {
+  background-color: #78c97e;
+  border: 1px solid #78c97e;
+  font-weight: bold;
+  color: black;
+}
+
+.ant-btn-primary:hover {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+}
+
+.signup-form {
+  width: 25%;
+}
+
+.signup-form-parent {
+  text-align: center;
+}
+.signup-form {
+  margin: auto;
+}
+
+.signup-top {
+  padding-top: 110px;
 }
